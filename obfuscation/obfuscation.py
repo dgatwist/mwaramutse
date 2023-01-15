@@ -24,7 +24,7 @@ class Encoder:
         self.payload = payload
 
     def base64_encode(self):
-    print("\033[1;32;40m Base64 Encoder \033[m",file)
+        print("\033[1;32;40m Base64 Encoder \033[m",file)
         print("Payload: ",self.payload)
         encoded_payload = base64.b64encode(self.payload.decode().encode())
         print("Base64 encoded payload: ", encoded_payload)
