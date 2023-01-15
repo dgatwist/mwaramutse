@@ -13,17 +13,17 @@ A Modular Pentest Framework
 
 ```bash
 git clone htpps://github.com/dgatwist/mwaramutse.git
-sudo pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Usage
 
 1. Open your cli(command line interface) 
 2. Navigate to where you have cloned this tool.
-3. python3 __main__.py
+3. python3 main.py
 
 ```
 
 ## License
 
-This software is licensed under the [MIT](https://github.com/dgatwist/muraho/blob/main/LICENSE) License.
+This software is licensed under the [MIT](https://github.com/dgatwist/mwaramutse/blob/main/LICENSE) License.
