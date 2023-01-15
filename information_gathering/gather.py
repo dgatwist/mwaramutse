@@ -2,10 +2,12 @@ import subprocess
 
 import os
 class WebCrawler:
+    
     def __init__(self, starting_url):
         self.starting_url = starting_url
 
     def crawl(self):
+        print("\033[1;32;40m Crawl\033[m")
         subprocess.run(["photon", "-u", self.starting_url])
        
 
@@ -15,7 +17,8 @@ class WebCrawler:
             # Get the list of files in the directory
             files = os.listdir(result_dir)
             for file in files:
-                print(f"Reading contents of {file}")
+                print("\033[1;32;40m Reading contents of \033[m",file)
+               
                 # Open each file and read its contents
                 with open(os.path.join(result_dir, file), 'r') as f:
                     contents = f.read()
@@ -33,6 +36,7 @@ class NetworkScanner:
         self.target_host = target_host
 
     def scan(self):
+        print("\033[1;32;40m Port Scan \033[m")
         subprocess.run(["nmap", self.target_host])
 
 class ReverseEngineer:
@@ -40,6 +44,7 @@ class ReverseEngineer:
         self.target_url = target_url
 
     def analyze(self):
+        print("\033[1;32;40m Source Code Scan \033[m")
         tool_name = "nikto"
         url="http://"+self.target_url
         subprocess.run([tool_name, "-h",url])
@@ -49,6 +54,7 @@ class SubdomainEnumeration:
         self.target_host = target_host
         
     def enumerate(self):
+        print("\033[1;32;40m Subdomain Enumeration \033[m")
         subprocess.run(["nmap", "-sn","--script","hostmap-crtsh", self.target_host])
             
 class DirectoryBruteforcer:
@@ -56,4 +62,5 @@ class DirectoryBruteforcer:
         self.target_url = target_url
     
     def bruteforce(self):
+        print("\033[1;32;40m Directory Bruteforcing \033[m")
         subprocess.run(["feroxbuster", "-u", self.target_url])

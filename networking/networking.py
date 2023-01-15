@@ -6,6 +6,7 @@ class Networking:
         self.url = url
 
     def brute_force(self):
+        print("\033[1;32;40m Bruteforcing a login page using hydra \033[m")
         login_page = input("Enter the login page URL: ")
         path = input("Enter the path of the login page( Example /login/index.php:username=^USER^&password=^PASS^:F=incorrect login): ")
         username = input("Enter the username (default is admin): ") or "admin"
@@ -22,16 +23,15 @@ class Networking:
 
 
     def sql_injection(self):
+        print("\033[1;32;40m SQL INJECTION \033[m")
         url = input("Please enter a URL: ")
         subprocess.run(["sqlmap", "-u", url, "--wizard"])
 
 
     def xss(self):
+        print("\033[1;32;40m XSS Detection \033[m")
         url = input("Enter the URL: ")
         subprocess.run(["xsstrike", "-u", url])
 
         
-    def get_xss_results(self):
-        output = subprocess.check_output(["xsstrike", "-u", self.url])
-        return output.decode()
-
+    

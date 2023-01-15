@@ -68,12 +68,16 @@ def main():
         # Run all modules
         information_gathering = WebCrawler(target_url)
         information_gathering.crawl()
+        
         information_gathering = NetworkScanner(target_url)
         information_gathering.scan()
+       
         information_gathering = ReverseEngineer(target_url)
         information_gathering.analyze()
+        
         information_gathering = SubdomainEnumeration(target_url)
         information_gathering.enumerate()
+        
         information_gathering = DirectoryBruteforcer(target_url)
         information_gathering.bruteforce()
 
@@ -83,40 +87,42 @@ def main():
         networking.sql_injection()
         networking.xss()
         
-        xss_result = networking.get_xss_results()
-        encryption_key = input("Enter an encryption key: ")
-        obfuscation = Encoder(xss_result)
+        obfuscation = PayloadGenerator()
+        payload=obfuscation.generate_payload()
+
+        obfuscation = Encoder(payload)
         obfuscation.base64_encode()
-        obfuscation.json_encode()
-        obfuscation = Encryptor(xss_result, encryption_key)
+       
+        encryption_key = input("Enter an encryption key: ")
+        obfuscation = Encryptor(payload, encryption_key)
         obfuscation.aes_encrypt()
-        obfuscation = Compressor(xss_result)
+        obfuscation = Compressor(payload)
         obfuscation.deflate()
 
         passwords = Passwords(target_url)
-        passwords.dictionnary_attack()
-        passwords.brute_force_attack()
+        passwords.generate_dictionary()
+        passwords.dictionary_attack()
         passwords.rule_based_attack()
 
-        web_app = Web_apps(target_url)
-        web_app.input_validation()
-        web_app.output_encoding()
-        web_app.access_control()
+        web_apps = Web_apps(target_url)
+        #web_apps.input_validation()
+        web_apps.output_encoding()
+        web_apps.access_control()
         
     elif selected_module == "1":
-        print("Using the Web Crawler")
+        
         information_gathering = WebCrawler(target_url)
         information_gathering.crawl()
-        print("Network Scan:")
+        
         information_gathering = NetworkScanner(target_url)
         information_gathering.scan()
-        print(" Scanning the source code for vulnerabilities")
+       
         information_gathering = ReverseEngineer(target_url)
         information_gathering.analyze()
-        print("Enumerating Subdomains")
+        
         information_gathering = SubdomainEnumeration(target_url)
         information_gathering.enumerate()
-        print("Directory Bruteforcing")
+        
         information_gathering = DirectoryBruteforcer(target_url)
         information_gathering.bruteforce()
     elif selected_module == "2":
