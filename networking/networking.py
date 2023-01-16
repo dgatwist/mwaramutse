@@ -10,9 +10,9 @@ class Networking:
         login_page = input("Enter the login page URL: ")
         path = input("Enter the path of the login page( Example /login/index.php:username=^USER^&password=^PASS^:F=incorrect login): ")
         username = input("Enter the username (default is admin): ") or "admin"
-        use_password_generator = input("Do you want to generate a password list? (yes/no): ")
-        if use_password_generator.lower() == "yes":
-            subprocess.run(["cupp", "-i","-q"])
+        use_password_generator = input("Do you want to generate a password list? (y/n): ")
+        if use_password_generator.lower() == "y":
+            subprocess.run(["cupp", "-i"])
             cupp_file_name = input("Enter the file name generated: ")
             password_list = cupp_file_name
        

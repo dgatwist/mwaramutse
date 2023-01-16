@@ -1,2 +1,2 @@
-from .obfuscation import Encoder, Encryptor, Compressor, PayloadGenerator
+from .obfuscation import Encoder, Encryptor, Compressor, PayloadGenerator, IPobfuscator
 

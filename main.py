@@ -6,7 +6,7 @@ from rich.columns import Columns
 from rich.text import Text
 from information_gathering import WebCrawler, NetworkScanner, ReverseEngineer, SubdomainEnumeration, DirectoryBruteforcer
 from networking import Networking
-from obfuscation import Encoder, Compressor, Encryptor, PayloadGenerator
+from obfuscation import Encoder, Compressor, Encryptor, PayloadGenerator, IPobfuscator
 from passwords import Passwords
 from web_apps import Web_apps
 
@@ -52,8 +52,8 @@ def main():
     print(BANNER4)
     print(TERMS)
     # Ask user to accept terms and conditions
-    accept_terms = input("Do you accept the terms and conditions? (yes/no): ")
-    if accept_terms != "yes":
+    accept_terms = input("Do you accept the terms and conditions? (y/n): ")
+    if accept_terms != "y":
         sys.exit("Terms and conditions not accepted.")
     
     # Get target url or ip from user
@@ -62,54 +62,11 @@ def main():
         sys.exit("Invalid target URL or IP.")
 
     # Show menu and ask user to select a module
-    modules = ["1. Information Gathering", "2. Networking", "3. Obfuscation", "4. Passwords", "5. Web Applications", "5. All"]
+    modules = ["1. Information Gathering", "2. Networking", "3. Obfuscation", "4. Passwords", "5. Utilities"]
     selected_module = input(Text("Select a module:") + "\n" + "\n".join(modules) + "\n")
-    if selected_module == "6":
-        # Run all modules
-        information_gathering = WebCrawler(target_url)
-        information_gathering.crawl()
+ 
         
-        information_gathering = NetworkScanner(target_url)
-        information_gathering.scan()
-       
-        information_gathering = ReverseEngineer(target_url)
-        information_gathering.analyze()
-        
-        information_gathering = SubdomainEnumeration(target_url)
-        information_gathering.enumerate()
-        
-        information_gathering = DirectoryBruteforcer(target_url)
-        information_gathering.bruteforce()
-
-
-        networking = Networking(target_url)
-        networking.brute_force()
-        networking.sql_injection()
-        networking.xss()
-        
-        obfuscation = PayloadGenerator()
-        payload=obfuscation.generate_payload()
-
-        obfuscation = Encoder(payload)
-        obfuscation.base64_encode()
-       
-        encryption_key = input("Enter an encryption key: ")
-        obfuscation = Encryptor(payload, encryption_key)
-        obfuscation.aes_encrypt()
-        obfuscation = Compressor(payload)
-        obfuscation.deflate()
-
-        passwords = Passwords(target_url)
-        passwords.generate_dictionary()
-        passwords.dictionary_attack()
-        passwords.rule_based_attack()
-
-        web_apps = Web_apps(target_url)
-        #web_apps.input_validation()
-        web_apps.output_encoding()
-        web_apps.access_control()
-        
-    elif selected_module == "1":
+    if selected_module == "1":
         
         information_gathering = WebCrawler(target_url)
         information_gathering.crawl()
@@ -145,6 +102,8 @@ def main():
         obfuscation.aes_encrypt()
         obfuscation = Compressor(payload)
         obfuscation.deflate()
+        obfuscation = IPobfuscator()
+        obfuscation.cuteit()
         
     elif selected_module == "4":
         
@@ -155,9 +114,8 @@ def main():
         
     elif selected_module == "5":
         web_apps = Web_apps(target_url)
-        #web_apps.input_validation()
-        web_apps.output_encoding()
-        web_apps.access_control()
+        web_apps.launch_utility()
+       
     else:
         sys.exit("Invalid choice.")
 
